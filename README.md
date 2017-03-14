@@ -111,3 +111,5 @@ export function MyNameValidatorWithParms(nameRe: RegExp): ValidatorFn
     };
 }    
 `
+
+11. 練習 ViewChild, ViewChildren, ContentChild, ContentChildren 的用法
