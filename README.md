@@ -39,7 +39,7 @@
      - 主要用來建立一個 表單控制項 (FormControl) 實體  
   3. 練習範本表單的 ngModel 用法 (套用 forms.classic.html 範本並設定欄位驗證)  
      - 單向綁定( one-way binding ) 使用 [ngModel]  
-       <input name="username" [ngModel]="username">  
+       `<input name="username" [ngModel]="username">`  
      - 雙向綁定( two-way binding ) 使用 [(ngModel)]  
        <input name="username" [(ngModel)]="username">  
      - 放在 <form> 裡面的輸入欄位則必須要有 name 屬性  

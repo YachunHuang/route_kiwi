@@ -1,71 +1,46 @@
+
         <section>
           <div class="container-fluid">
             <h5 class="mt0">Classic form controls and custom variants</h5>
-              <pre>{{ data | json }}</pre>
-              <pre>{{
-                     {
-                       value: mTitle.value,
-                       errors: mTitle.errors,
-                       valid: mTitle.valid,
-                       dirty: mTitle.dirty,
-                       touched: mTitle.touched
-                     } | json }}</pre>
-              <pre>{{
-                     {
-                       value: f.value,
-                       errors: f.errors,
-                       valid: f.valid,
-                       dirty: f.dirty,
-                       touched: f.touched
-                     } | json }}</pre>
+            <pre>{{ f.value | json }}</pre>
+            <pre>{{
+                    {
+                      value: f.value,
+                      errors: f.errors,
+                      valid: f.valid,
+                      dirty: f.dirty,
+                      touched: f.touched
+                    } | json }}</pre>
+
             <div class="card">
               <div class="card-body">
-                <form method="get" action="/" class="form-horizontal" #f="ngForm" (ngSubmit)="doSubmit(f)">
-                <input type="submit" name="" value="送出"/>
+                <form class="form-horizontal" [formGroup]="form" #f="ngForm" novalidate>
+                  <input type="submit" name="" value="送出">
                   <fieldset>
-                    <div class="form-group" [class.has-error]="mTitle.dirty && mTitle.errors?.required">
-                      <label class="col-sm-2 control-label">Title</label>
+                    <div class="form-group" [class.has-error]="form.controls.title.errors?.required">
+                      <label class="col-sm-2 control-label">Rounded Corners</label>
                       <div class="col-sm-10">
                         <input type="text" class="form-control rounded"
-                        name="title" [(ngModel)]="data.title" required #mTitle="ngModel">
+                          formControlName="title">
                       </div>
                     </div>
                   </fieldset>
                   <fieldset>
-                    <div class="form-group">
-                      <label class="col-sm-2 control-label">SubTitle</label>
+                    <div class="form-group" [class.has-error]="form.controls.subtitle.errors?.required">
+                      <label class="col-sm-2 control-label">With help</label>
                       <div class="col-sm-10">
                         <input type="text" class="form-control"
-                        name="subtitle" [(ngModel)]="data.subtitle" required #mSubTitle="ngModel">
-                        <span class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span>
+                          formControlName="subtitle"
+                          ><span class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span>
                       </div>
                     </div>
                   </fieldset>
-                  <div ngModelGroup="profile">
-                  <fieldset>
-                    <div class="form-group" [class.has-error]="mType1.errors?.required">
-                      <label for="input-id-1" class="col-sm-2 control-label">Label focus</label>
-                      <div class="col-sm-10">
-                        <input id="input-id-1" type="text" class="form-control" name="type1" #mType1="ngModel"
-                        [required]="!mTitle.errors?.required" [(ngModel)]="data.type1">
-                      </div>
-                    </div>
-                  </fieldset>
-                  <fieldset>
-                    <div class="form-group" [class.has-error]="mType2.errors?.required">
-                      <label class="col-sm-2 control-label">Password</label>
-                      <div class="col-sm-10">
-                        <input type="password" name="password" class="form-control" name="type2" #mType2="ngModel"
-                        [required]="!mTitle.errors?.required" [(ngModel)]="data.type2">
-                      </div>
-                    </div>
-                  </fieldset>
-                  </div>
+
                   <fieldset>
                     <div class="form-group">
                       <label class="col-sm-2 control-label">Placeholder</label>
                       <div class="col-sm-10">
-                        <input type="text" placeholder="placeholder" name="p1" class="form-control">
+                        <input type="text" placeholder="placeholder" class="form-control">
                       </div>
                     </div>
                   </fieldset>

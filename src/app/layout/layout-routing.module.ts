@@ -1,3 +1,4 @@
+import { Form2Component } from './../form2/form2.component';
 import { FormComponent } from './../form/form.component';
 import { NeedLoginGuard } from './../need-login.guard';
 import { NgModule } from '@angular/core';
@@ -16,6 +17,7 @@ const routes: Routes = [
     children:
     [
       { path: 'form', component: FormComponent },
+      { path: 'form2', component: Form2Component },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'cards', component: CardsComponent },
       { path: 'cards/:num', component: CardsComponent },

@@ -15,6 +15,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { LayoutModule } from './layout/layout.module';
 import { LoginComponent } from './login/login.component';
 import { FormComponent } from './form/form.component';
+import { Form2Component } from './form2/form2.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { FormComponent } from './form/form.component';
     CardsComponent,
     LayoutComponent,
     LoginComponent,
-    FormComponent
+    FormComponent,
+    Form2Component
   ],
   imports: [
     BrowserModule,
