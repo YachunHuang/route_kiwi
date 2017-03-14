@@ -49,16 +49,17 @@
      `<form name="form1" #f="ngForm">`
   5. 練習範本表單的NgModelGroup用法語欄位驗證樣式與驗證器  
      - 主要用途用來追蹤/取得群組內所有表單控制項的欄位值與驗證狀態
-        ```sh 
+        `
         <div class="form-group" [class.has-error]="mType1.errors?.required">
         <label for="input-id-1" class="col-sm-2 control-label">Label focus</label>
             <div class="col-sm-10">
                 <input id="input-id-1" type="text" class="form-control" name="type1" #mType1="ngModel" [required]="!mTitle.errors?.required" [(ngModel)]="data.type1">
             </div>
-        </div>
-6. 建立 form2 頁面並實作 title 與 subtitle 的表單模型與頁面
-7. 在 Reactive Forms 的欄位套用欄位驗證 (必填) 並顯示驗證結果在畫面上
-    ```sh  
+        </div>`
+
+  6. 建立 form2 頁面並實作 title 與 subtitle 的表單模型與頁面  
+  7. 在 Reactive Forms 的欄位套用欄位驗證 (必填) 並顯示驗證結果在畫面上  
+    `  
     this.form = this.fb.group(
         {
             'title':['p1 default value',
@@ -67,9 +68,10 @@
             ],
             'subtitle':['p2 default value', Validators.required]
         }
-    );
-9. 用 Reactive Forms 實作動態欄位表單與驗證
-    ```sh    
+    );` 
+
+  8. 用 Reactive Forms 實作動態欄位表單與驗證  
+    `  
     this.form = this.fb.group(
     {
         'title': ['p1value', [Validators.required, Validators.maxLength(10)]],
@@ -80,4 +82,5 @@
           })
         )
       }
-    );
+    );`  
+    
