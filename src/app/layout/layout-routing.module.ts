@@ -1,3 +1,4 @@
+import { FormComponent } from './../form/form.component';
 import { NeedLoginGuard } from './../need-login.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -14,14 +15,15 @@ const routes: Routes = [
   path: 'layout', component: LayoutComponent,
     children:
     [
-      { path: '', component: DashboardComponent },
+      { path: 'form', component: FormComponent },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'cards', component: CardsComponent },
       { path: 'cards/:num', component: CardsComponent },
       //ChartsRoute
       { path: 'charts',
         loadChildren: '../charts/charts.module#ChartsModule',
-        canActivate:[NeedLoginGuard] }
+        canActivate:[NeedLoginGuard]
+      }
     ]
   }
   //,

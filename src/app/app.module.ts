@@ -1,7 +1,7 @@
 import { NeedLoginGuard } from './need-login.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +14,7 @@ import { CardsComponent } from './cards/cards.component';
 import { LayoutComponent } from './layout/layout.component';
 import { LayoutModule } from './layout/layout.module';
 import { LoginComponent } from './login/login.component';
+import { FormComponent } from './form/form.component';
 
 
 @NgModule({
@@ -24,11 +25,13 @@ import { LoginComponent } from './login/login.component';
     DashboardComponent,
     CardsComponent,
     LayoutComponent,
-    LoginComponent
+    LoginComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     LayoutModule,
     //ChartsModule,
