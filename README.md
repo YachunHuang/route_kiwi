@@ -15,19 +15,20 @@
      - 預先載入的過程透過非同步背景下載，不影響畫面顯示或使用者操作  
 
 ##實作路由守門員 (Route Guards)
-  1. 用來控管權限
-  2. 建立LoginRouteGuard服務元件並實作 CanActivate  
-        - ng g class LoginRouteGuard  
+
+1. 用來控管權限
+2. 建立LoginRouteGuard服務元件並實作 CanActivate  
+    `ng g class LoginRouteGuard`
 3. 實作 CanActivate 介面  
     - 到 app.module.ts 將 LoginRouteGuard 加入 providers  
     - providers: [LoginRouteGuard]  
     - 在 'charts' 路由定義加上 canActivate 屬性  
-      ```sh 
+      `
         { 
             path: 'charts',
             loadChildren: '../charts/charts.module#ChartsModule',
             canActivate:[NeedLoginGuard] 
-        }
+        }`
   4. canDeactive表示要離開這個路由元件  
 
   ##表單開發模型
@@ -36,7 +37,7 @@
      - 使用 formControlName 屬性  
   2. 樣板表單(Template-Driven Form)
      - 使用 ngModel 指令 (Directive)    
-     - [(ngModel)]="name"   
+     `[(ngModel)]="name"`
   3. 練習範本表單的 ngModel 用法 (套用 forms.classic.html 範本並設定欄位驗證)  
      - 單向綁定( one-way binding )  
        `<input name="username" [ngModel]="username">`  
@@ -67,8 +68,7 @@
             'subtitle':['p2 default value', Validators.required]
         }
     );
-
-8. 用 Reactive Forms 實作動態欄位表單與驗證
+9. 用 Reactive Forms 實作動態欄位表單與驗證
     ```sh    
     this.form = this.fb.group(
     {
