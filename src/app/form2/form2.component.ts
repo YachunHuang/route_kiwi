@@ -1,3 +1,4 @@
+import { MyNameValidator, MyNameValidatorWithParms } from './validators/myname.validator';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -15,7 +16,8 @@ export class Form2Component implements OnInit {
 
     this.form = this.fb.group(
       {
-        'title': ['p1value', [Validators.required, Validators.maxLength(10)]],
+        'title': ['p1value', [Validators.required, Validators.maxLength(10),
+        MyNameValidatorWithParms(/Kiwi/i)]],//驗證有Kiwi字串的都可以過(i的意思是不分大小寫)
         'subtitle': ['p2value', Validators.required],
         'types':this.fb.array(
           this.types.map((v,idx)=>{
