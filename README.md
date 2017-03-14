@@ -31,25 +31,25 @@
         }`  
 4. canDeactive表示要離開這個路由元件  
 
-  ##表單開發模型  
-  1. 模型表單(Model-Driven Form) 
-     - 動態表單的話可以使用模型為主的表單開發模式  
-     - 使用 formControlName 屬性  
-  2. 樣板表單(Template-Driven Form)  
-     - 使用 ngModel 指令 (Directive)    
-     `[(ngModel)]="name"`  
-  3. 練習範本表單的 ngModel 用法 (套用 forms.classic.html 範本並設定欄位驗證)  
-     - 單向綁定( one-way binding )  
-       `<input name="username" [ngModel]="username">`  
-     - 雙向綁定( two-way binding )  
-       `<input name="username" [(ngModel)]="username">`  
-     - 放在 <form> 裡面的輸入欄位則必須要有 name 屬性    
-  4. 練習範本表單的NgForm用法與注意事項  
-     - 要從範本取得 ngForm 物件實體，可以透過範本參考變數完成  
-     `<form name="form1" #f="ngForm">`  
-  5. 練習範本表單的NgModelGroup用法語欄位驗證樣式與驗證器  
-     - 主要用途用來追蹤/取得群組內所有表單控制項的欄位值與驗證狀態  
-        `
+##表單開發模型  
+1. 模型表單(Model-Driven Form) 
+    - 動態表單的話可以使用模型為主的表單開發模式  
+    - 使用 formControlName 屬性  
+2. 樣板表單(Template-Driven Form)  
+    - 使用 ngModel 指令 (Directive)    
+    `[(ngModel)]="name"`  
+3. 練習範本表單的 ngModel 用法 (套用 forms.classic.html 範本並設定欄位驗證)  
+    - 單向綁定( one-way binding )  
+    `<input name="username" [ngModel]="username">`  
+    - 雙向綁定( two-way binding )  
+    `<input name="username" [(ngModel)]="username">`  
+    - 放在 <form> 裡面的輸入欄位則必須要有 name 屬性    
+4. 練習範本表單的NgForm用法與注意事項  
+    - 要從範本取得 ngForm 物件實體，可以透過範本參考變數完成  
+    `<form name="form1" #f="ngForm">`  
+5. 練習範本表單的NgModelGroup用法語欄位驗證樣式與驗證器  
+    - 主要用途用來追蹤/取得群組內所有表單控制項的欄位值與驗證狀態  
+    `
         <div class="form-group" [class.has-error]="mType1.errors?.required">
         <label for="input-id-1" class="col-sm-2 control-label">Label focus</label>
             <div class="col-sm-10">
@@ -57,9 +57,9 @@
             </div>
         </div>`  
 
-  6. 建立 form2 頁面並實作 title 與 subtitle 的表單模型與頁面  
-  7. 在 Reactive Forms 的欄位套用欄位驗證 (必填) 並顯示驗證結果在畫面上  
-     - 使用Validators.required、Validators.maxLength(10)等等...  
+6. 建立 form2 頁面並實作 title 與 subtitle 的表單模型與頁面  
+7. 在 Reactive Forms 的欄位套用欄位驗證 (必填) 並顯示驗證結果在畫面上  
+   - 使用Validators.required、Validators.maxLength(10)等等...  
 
     `  
     this.form = this.fb.group(
@@ -69,9 +69,9 @@
         }
     );`  
 
-  8. 用 Reactive Forms 實作動態欄位表單與驗證  
-     - 使用map動態產生物件  
-    `  
+8. 用 Reactive Forms 實作動態欄位表單與驗證  
+   - 使用map動態產生物件  
+   `  
     this.form = this.fb.group(
     {
         'title': ['p1value', [Validators.required, Validators.maxLength(10)]],
@@ -84,6 +84,30 @@
       }
     );`  
 
-  9. 透過強行別將class轉為formgroup  
+9. 透過強行別將class轉為formgroup  
 
-  10. 練習 Reactive Forms 的自訂驗證器  
+10. 練習 Reactive Forms 的自訂驗證器  
+`    import { AbstractControl, ValidatorFn } from '@angular/forms';
+//不帶參數的驗證器
+export function MyNameValidator(control: AbstractControl)
+{
+  if(control.value.indexOf('Kiwi') === 0)
+  {
+    if(control.value.endsWith('0'))
+    {
+      return {myname:true};
+    }
+  }
+  return null;
+}
+
+//帶參數驗證器
+export function MyNameValidatorWithParms(nameRe: RegExp): ValidatorFn
+{
+  return (control: AbstractControl): { [key: string]: any } =>
+    {
+      const name = control.value; const no = nameRe.test(name);
+      return no ? { 'mynamewithparms': true } : null;
+    };
+}    
+`

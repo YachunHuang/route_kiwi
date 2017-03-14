@@ -1,4 +1,5 @@
 import { AbstractControl, ValidatorFn } from '@angular/forms';
+//不帶參數的驗證器
 export function MyNameValidator(control: AbstractControl)
 {
   if(control.value.indexOf('Kiwi') === 0)
@@ -11,7 +12,7 @@ export function MyNameValidator(control: AbstractControl)
   return null;
 }
 
-//帶參數驗證
+//帶參數驗證器
 export function MyNameValidatorWithParms(nameRe: RegExp): ValidatorFn
 {
   return (control: AbstractControl): { [key: string]: any } =>

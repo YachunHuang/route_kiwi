@@ -1,3 +1,4 @@
+import { Advcomp1Component } from './advcomp1/advcomp1.component';
 /*import { FlotComponent } from './charts/flot/flot.component';
 import { CardsComponent } from './cards/cards.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -10,7 +11,8 @@ import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: '', redirectTo:'/login',pathMatch:'full' },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'adv1', component: Advcomp1Component }
 
  /* { path: '', redirectTo:'/dashboard',pathMatch:'full' },
   { path: 'page1', component: Page1Component },
