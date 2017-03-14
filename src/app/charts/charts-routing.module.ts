@@ -3,7 +3,7 @@ import { Route, Routes, RouterModule } from '@angular/router';
 import { FlotComponent } from './flot/flot.component';
 
 const routes: Routes=[
-       { path: '', redirectTo: 'flot', pathMatch: 'full' },
+       //{ path: '', redirectTo: 'flot', pathMatch: 'full' },
        { path: 'flot', component: FlotComponent }
 ];
 

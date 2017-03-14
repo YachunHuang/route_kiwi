@@ -1,3 +1,4 @@
+import { NeedLoginGuard } from './../need-login.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FlotComponent } from '../charts/flot/flot.component';
@@ -18,7 +19,9 @@ const routes: Routes = [
       { path: 'cards', component: CardsComponent },
       { path: 'cards/:num', component: CardsComponent },
       //ChartsRoute
-      { path: 'charts', loadChildren: '../charts/charts.module#ChartsModule' }
+      { path: 'charts',
+        loadChildren: '../charts/charts.module#ChartsModule',
+        canActivate:[NeedLoginGuard] }
     ]
   }
   //,

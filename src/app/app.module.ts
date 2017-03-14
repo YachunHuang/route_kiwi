@@ -1,3 +1,4 @@
+import { NeedLoginGuard } from './need-login.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -33,7 +34,7 @@ import { LoginComponent } from './login/login.component';
     //ChartsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [NeedLoginGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
