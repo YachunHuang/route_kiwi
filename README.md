@@ -1,6 +1,6 @@
 # Ng2Advanced
 
-##模組載入機制
+## 模組載入機制
   1. 全部載入  
      - 將所有模組一次載入(打包成一個js)  
 
@@ -14,7 +14,7 @@
      - 所有可延遲載入的程式片段會立即預先載入  
      - 預先載入的過程透過非同步背景下載，不影響畫面顯示或使用者操作  
 
-##實作路由守門員 (Route Guards)
+## 實作路由守門員 (Route Guards)
 
 1. 用來控管權限
 2. 建立LoginRouteGuard服務元件並實作 CanActivate  
@@ -31,7 +31,7 @@
         }`  
 4. canDeactive表示要離開這個路由元件  
 
-##表單開發模型  
+## 表單開發模型  
 1. 模型表單(Model-Driven Form) 
     - 動態表單的話可以使用模型為主的表單開發模式  
     - 使用 formControlName 屬性  
@@ -49,29 +49,29 @@
     `<form name="form1" #f="ngForm">`  
 5. 練習範本表單的NgModelGroup用法語欄位驗證樣式與驗證器  
     - 主要用途用來追蹤/取得群組內所有表單控制項的欄位值與驗證狀態  
-    `
-        <div class="form-group" [class.has-error]="mType1.errors?.required">
-        <label for="input-id-1" class="col-sm-2 control-label">Label focus</label>
-            <div class="col-sm-10">
-                <input id="input-id-1" type="text" class="form-control" name="type1" #mType1="ngModel" [required]="!mTitle.errors?.required" [(ngModel)]="data.type1">
-            </div>
-        </div>`  
-
+```sh
+<div class="form-group" [class.has-error]="mType1.errors?.required">
+    <label for="input-id-1" class="col-sm-2 control-label">Label focus</label>
+    <div class="col-sm-10">
+        <input id="input-id-1" type="text" class="form-control" name="type1" #mType1="ngModel" [required]="!mTitle.errors?.required" [(ngModel)]="data.type1">
+    </div>
+</div>
+```
 6. 建立 form2 頁面並實作 title 與 subtitle 的表單模型與頁面  
 7. 在 Reactive Forms 的欄位套用欄位驗證 (必填) 並顯示驗證結果在畫面上  
    - 使用Validators.required、Validators.maxLength(10)等等...  
-
-    `  
-    this.form = this.fb.group(
-        {
-            'title':['p1 default value', [Validators.required, Validators.maxLength(10)]],
+```sh
+this.form = this.fb.group(
+{
+    'title':['p1 default value', [Validators.required, Validators.maxLength(10)]],
             'subtitle':['p2 default value', Validators.required]
-        }
-    );`  
+    }
+);
+```
 
 8. 用 Reactive Forms 實作動態欄位表單與驗證  
    - 使用map動態產生物件  
-   `  
+```sh
     this.form = this.fb.group(
     {
         'title': ['p1value', [Validators.required, Validators.maxLength(10)]],
@@ -82,12 +82,14 @@
           })
         )
       }
-    );`  
+    );
+```
 
 9. 透過強行別將class轉為formgroup  
 
 10. 練習 Reactive Forms 的自訂驗證器  
-`    import { AbstractControl, ValidatorFn } from '@angular/forms';
+```sh
+import { AbstractControl, ValidatorFn } from '@angular/forms';
 //不帶參數的驗證器
 export function MyNameValidator(control: AbstractControl)
 {
@@ -110,6 +112,6 @@ export function MyNameValidatorWithParms(nameRe: RegExp): ValidatorFn
       return no ? { 'mynamewithparms': true } : null;
     };
 }    
-`
+```
 
 11. 練習 ViewChild, ViewChildren, ContentChild, ContentChildren 的用法
