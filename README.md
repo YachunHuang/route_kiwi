@@ -17,15 +17,17 @@
 ##實作路由守門員 (Route Guards)
   1. 用來控管權限
   2. 建立LoginRouteGuard服務元件並實作 CanActivate  
-     ng g class LoginRouteGuard  
-  3. 實作 CanActivate 介面  
-     到 app.module.ts 將 LoginRouteGuard 加入 providers  
-     providers: [LoginRouteGuard]  
-     在 'charts' 路由定義加上 canActivate 屬性  
-      { path: 'charts',
-        loadChildren: '../charts/charts.module#ChartsModule',
-        canActivate:[NeedLoginGuard] 
-      }    
+        - ng g class LoginRouteGuard  
+3. 實作 CanActivate 介面  
+    - 到 app.module.ts 將 LoginRouteGuard 加入 providers  
+    - providers: [LoginRouteGuard]  
+    - 在 'charts' 路由定義加上 canActivate 屬性  
+      ```sh 
+        { 
+            path: 'charts',
+            loadChildren: '../charts/charts.module#ChartsModule',
+            canActivate:[NeedLoginGuard] 
+        }
   4. canDeactive表示要離開這個路由元件  
 
   ##表單開發模型
@@ -34,28 +36,48 @@
      - 使用 formControlName 屬性  
   2. 樣板表單(Template-Driven Form)
      - 使用 ngModel 指令 (Directive)    
-     - [(ngModel)]="name"  
-     - 建立一個「雙向繫結」綁定元件中的特定屬  
-     - 主要用來建立一個 表單控制項 (FormControl) 實體  
+     - [(ngModel)]="name"   
   3. 練習範本表單的 ngModel 用法 (套用 forms.classic.html 範本並設定欄位驗證)  
-     - 單向綁定( one-way binding ) 使用 [ngModel]  
+     - 單向綁定( one-way binding )  
        `<input name="username" [ngModel]="username">`  
-     - 雙向綁定( two-way binding ) 使用 [(ngModel)]  
-       <input name="username" [(ngModel)]="username">  
+     - 雙向綁定( two-way binding ) 
+       `<input name="username" [(ngModel)]="username">`  
      - 放在 <form> 裡面的輸入欄位則必須要有 name 屬性  
   4. 練習範本表單的NgForm用法與注意事項  
-     - FormsModule 預設會將所有的 <form> 標籤宣告為 NgForm 指令  
-     - 因此 <form> 標籤不需要額外宣告 ngForm 指令 (Directive)  
-     - 要從範本取得 ngForm 物件實體，可以透過範本參考變數完成 <form name="form1" #f="ngForm">  
+     - 要從範本取得 ngForm 物件實體，可以透過範本參考變數完成 
+     `<form name="form1" #f="ngForm">`
   5. 練習範本表單的NgModelGroup用法語欄位驗證樣式與驗證器  
      - 主要用途用來追蹤/取得群組內所有表單控制項的欄位值與驗證狀態
-          <div class="form-group" [class.has-error]="mType1.errors?.required">
-                      <label for="input-id-1" class="col-sm-2 control-label">Label focus</label>
-                      <div class="col-sm-10">
-                        <input id="input-id-1" type="text" class="form-control" name="type1" #mType1="ngModel"
-                        [required]="!mTitle.errors?.required" [(ngModel)]="data.type1">
-                      </div>
-                    </div>
-    
+        ```sh 
+        <div class="form-group" [class.has-error]="mType1.errors?.required">
+        <label for="input-id-1" class="col-sm-2 control-label">Label focus</label>
+            <div class="col-sm-10">
+                <input id="input-id-1" type="text" class="form-control" name="type1" #mType1="ngModel" [required]="!mTitle.errors?.required" [(ngModel)]="data.type1">
+            </div>
+        </div>
+6. 建立 form2 頁面並實作 title 與 subtitle 的表單模型與頁面
+7. 在 Reactive Forms 的欄位套用欄位驗證 (必填) 並顯示驗證結果在畫面上
+    ```sh  
+    this.form = this.fb.group(
+        {
+            'title':['p1 default value',
+            Validators.required,
+            Validators.maxLength(10)
+            ],
+            'subtitle':['p2 default value', Validators.required]
+        }
+    );
 
-
+8. 用 Reactive Forms 實作動態欄位表單與驗證
+    ```sh    
+    this.form = this.fb.group(
+    {
+        'title': ['p1value', [Validators.required, Validators.maxLength(10)]],
+        'subtitle': ['p2value', Validators.required],
+        'types':this.fb.array(
+        this.types.map((v,idx)=>{
+        return this.fb.control('default value '+v, Validators.required);
+          })
+        )
+      }
+    );

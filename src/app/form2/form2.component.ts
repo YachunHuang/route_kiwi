@@ -8,15 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Form2Component implements OnInit {
 
-  constructor(private fb:FormBuilder) { }
-form:any={};
-
+  constructor(private fb: FormBuilder) { }
+  form: any = {};
+  types = [1, 2, 3, 4, 5];
   ngOnInit() {
+
     this.form = this.fb.group(
-        {
-          'title':['p1 default value', Validators.required],
-          'subtitle':['p2 default value', Validators.required]
-        }
-     );
+      {
+        'title': ['p1value', [Validators.required, Validators.maxLength(10)]],
+        'subtitle': ['p2value', Validators.required],
+        'types':this.fb.array(
+          this.types.map((v,idx)=>{
+            return this.fb.control('default value '+v, Validators.required);
+          })
+        )
+      }
+    );
   }
 }
