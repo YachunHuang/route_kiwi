@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { DayInfo } from './../advcomp1/advmodel';
 
 @Component({
   selector: 'app-advcomp1-part',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Advcomp1PartComponent implements OnInit {
 
+  @Input() dayInfo : DayInfo;
+
   constructor() { }
 
   ngOnInit() {
   }
-
 }

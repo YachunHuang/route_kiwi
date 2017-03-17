@@ -19,6 +19,7 @@ import { Form2Component } from './form2/form2.component';
 import { Advcomp1Component } from './advcomp1/advcomp1.component';
 import { Advcomp1HeaderComponent } from './advcomp1-header/advcomp1-header.component';
 import { Advcomp1PartComponent } from './advcomp1-part/advcomp1-part.component';
+import { TabComponent } from './tab/tab.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { Advcomp1PartComponent } from './advcomp1-part/advcomp1-part.component';
     Form2Component,
     Advcomp1Component,
     Advcomp1HeaderComponent,
-    Advcomp1PartComponent
+    Advcomp1PartComponent,
+    TabComponent
   ],
   imports: [
     BrowserModule,

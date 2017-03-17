@@ -1,15 +1,29 @@
 <p #p (click)="debug()">
   advcomp1 works!
 </p>
-
-<app-advcomp1-header data="header 1 " >
-  <app-advcomp1-part></app-advcomp1-part>
-</app-advcomp1-header>
-<app-advcomp1-header #myheader data="header 2">
-<ul>
-  <li>123</li>
-  <li>456</li>
-  <li>789</li>
-</ul>
-
+<app-advcomp1-header #myheader data="header 1 ">
+  <app-tab tabTitle="行事曆">
+    <h4>{{currentYear}}年{{currentMonth}}月</h4>
+    <table class="table">
+      <tbody>
+        <tr>
+          <td>週日</td>
+          <td>週一</td>
+          <td>週二</td>
+          <td>週三</td>
+          <td>週四</td>
+          <td>週五</td>
+          <td>週六</td>
+        </tr>
+        <tr *ngFor="let inx of monthInfo[0].rows">
+          <td *ngFor="let col of [0,1,2,3,4,5,6]">
+            <app-advcomp1-part [dayInfo]="monthInfo[0].days[inx + col]"></app-advcomp1-part>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </app-tab>
+  <app-tab tabTitle="今天">
+    {{todayInfo.date}}
+  </app-tab>
 </app-advcomp1-header>

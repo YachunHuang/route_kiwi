@@ -1,4 +1,12 @@
 <p>
   advcomp1-header works!
 </p>
-<ng-content select="app-advcomp1-part"></ng-content>
+<hr>
+<ul class="tab-list">
+  <li *ngFor="let tab of tabs" [class.active]="selectedTab===tab" (click)="onSelect(tab)">
+  {{tab.tabTitle}}
+  </li>
+</ul>
+<hr>
+<ng-content ></ng-content>
+
