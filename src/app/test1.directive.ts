@@ -1,4 +1,4 @@
-import { Directive, HostBinding, HostListener } from '@angular/core';
+import { Directive, ElementRef, HostBinding, HostListener, Renderer } from '@angular/core';
 
 @Directive({
   selector: '[appTest1]'
@@ -14,7 +14,7 @@ export class Test1Directive {
    * (click)="changeColor($event)"
    */
   @HostListener('click', ['$event'])
-  changeColor($event:MouseEvent) {
+  changeColor($event: MouseEvent) {
     this.textColor = 'darkgreen';
     console.log($event);
 
@@ -27,6 +27,9 @@ export class Test1Directive {
      */
   }
 
-  constructor() { }
-
+  constructor(private el: ElementRef, private renderer: Renderer) { }
+  ngOnInit() {
+    //this.el.nativeElement.innerHtml (避免這樣使用,因為什麼東西都可以塞進去)
+    //透過實作renderer,透過這個去產生標準的html就是安全的
+ }
 }

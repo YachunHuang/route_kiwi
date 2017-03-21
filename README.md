@@ -116,28 +116,27 @@ export function MyNameValidatorWithParms(nameRe: RegExp): ValidatorFn
 
 11. 練習 ViewChild, ViewChildren, ContentChild, ContentChildren 的用法
 12. Directive
-是透過Angular使用內建或自訂directive用來自己定義html元素，並簡化dom操作。
+    - 是透過Angular使用內建或自訂directive用來自己定義html元素，並簡化dom操作。
+    - 好處:
+      - 節省整個網站的製作時間
+      - 精簡HTML內容
 
-好處:
-節省整個網站的製作時間
-精簡HTML內容
+      ```sh
+        /**
+        * [style.color]="'red'"
+        */
+        @HostBinding('style.color')
+        textColor: string = 'red';
 
-```sh
-  /**
-   * [style.color]="'red'"
-   */
-  @HostBinding('style.color')
-  textColor: string = 'red';
-
-  /**
-   * (click)="changeColor($event)"
-   */
-  @HostListener('click', ['$event'])
-  changeColor($event) {
-    this.textColor = 'darkgreen';
-    console.log($event);
-  }
-```
+        /**
+        * (click)="changeColor($event)"
+        */
+        @HostListener('click', ['$event'])
+        changeColor($event) {
+          this.textColor = 'darkgreen';
+          console.log($event);
+        }
+      ```
 13. console小技巧
   ```sh
       /**列出裡面的所有dom物件 */
@@ -148,3 +147,48 @@ export function MyNameValidatorWithParms(nameRe: RegExp): ValidatorFn
       * console.table(aaa)
       */
   ```
+  14. 從元件中找出目前屬性型指令套用的那個元素物件(DOM)
+    ```sh
+    constructor(private el: ElementRef, private renderer: Renderer) { }
+    ngOnInit() {
+      //this.el.nativeElement.innerHtml (避免這樣使用,因為什麼東西都可以塞進去)
+      //透過實作renderer,透過這個去產生標準的html就是安全的
+    }```  
+  15. 何時該用哪些寫法
+    ```sh 
+    [AoT](https://github.com/rangle/angular-2-aot-sandbox)
+    JiT:Just in Time (即時編譯)
+    AoT: Ahead of Time (預先編譯)
+    SSR:Server side randering```
+
+  16. 封裝
+    ```sh
+    @Component({
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.css'],
+    encapsulation: ViewEncapsulation.Emulated
+    })```
+
+  17. ngZone
+    - 不要這樣寫,否則每次偵測變更時都會被觸發
+    ```sh
+    <div class="card-title">Area {{showText()}}
+    </div>
+      showText() {
+     var date = new Date();
+     console.log(date);
+    return date;
+    }
+    ```
+    - 應該要加上
+  ```sh
+  constructor(private _ngZone:NgZone) { }
+
+  ngOnInit() {
+    this._ngZone.runOutsideAngular(()=>{
+      $(FlotCharts)
+
+    });
+
+  }```
