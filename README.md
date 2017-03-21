@@ -115,3 +115,26 @@ export function MyNameValidatorWithParms(nameRe: RegExp): ValidatorFn
 ```
 
 11. 練習 ViewChild, ViewChildren, ContentChild, ContentChildren 的用法
+12. Directive
+是透過Angular使用內建或自訂directive用來自己定義html元素，並簡化dom操作。
+
+好處:
+節省整個網站的製作時間
+精簡HTML內容
+
+```sh
+  /**
+   * [style.color]="'red'"
+   */
+  @HostBinding('style.color')
+  textColor: string = 'red';
+
+  /**
+   * (click)="changeColor($event)"
+   */
+  @HostListener('click', ['$event'])
+  changeColor($event) {
+    this.textColor = 'darkgreen';
+    console.log($event);
+  }
+```

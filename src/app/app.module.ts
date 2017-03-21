@@ -20,6 +20,7 @@ import { Advcomp1Component } from './advcomp1/advcomp1.component';
 import { Advcomp1HeaderComponent } from './advcomp1-header/advcomp1-header.component';
 import { Advcomp1PartComponent } from './advcomp1-part/advcomp1-part.component';
 import { TabComponent } from './tab/tab.component';
+import { Test1Directive } from './test1.directive';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { TabComponent } from './tab/tab.component';
     Advcomp1Component,
     Advcomp1HeaderComponent,
     Advcomp1PartComponent,
-    TabComponent
+    TabComponent,
+    Test1Directive
   ],
   imports: [
     BrowserModule,
