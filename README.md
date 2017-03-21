@@ -158,7 +158,8 @@ this.form = this.fb.group(
     [AoT](https://github.com/rangle/angular-2-aot-sandbox)
     JiT:Just in Time (即時編譯)
     AoT: Ahead of Time (預先編譯)
-    SSR:Server side randering```
+    SSR:Server side randering
+    ```
 
 16. 封裝
     ```sh
