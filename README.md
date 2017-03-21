@@ -138,30 +138,28 @@ export function MyNameValidatorWithParms(nameRe: RegExp): ValidatorFn
         }
       ```
 13. console小技巧
-  ```sh
-      /**列出裡面的所有dom物件 */
+      ```sh
+      列出裡面的所有dom物件
       console.dir($event);
-      /**
-      *可以印出成table樣式
-      * var aaa=[{a:1},{b:2},{c:3}];
-      * console.table(aaa)
-      */
-  ```
-  14. 從元件中找出目前屬性型指令套用的那個元素物件(DOM)
+      可以印出成table樣式
+      var aaa=[{a:1},{b:2},{c:3}];
+      console.table(aaa)
+      ``` 
+14. 從元件中找出目前屬性型指令套用的那個元素物件(DOM)
     ```sh
     constructor(private el: ElementRef, private renderer: Renderer) { }
     ngOnInit() {
       //this.el.nativeElement.innerHtml (避免這樣使用,因為什麼東西都可以塞進去)
       //透過實作renderer,透過這個去產生標準的html就是安全的
     }```  
-  15. 何時該用哪些寫法
+15. 何時該用哪些寫法
     ```sh 
     [AoT](https://github.com/rangle/angular-2-aot-sandbox)
     JiT:Just in Time (即時編譯)
     AoT: Ahead of Time (預先編譯)
     SSR:Server side randering```
 
-  16. 封裝
+16. 封裝
     ```sh
     @Component({
     selector: 'app-dashboard',
@@ -170,7 +168,7 @@ export function MyNameValidatorWithParms(nameRe: RegExp): ValidatorFn
     encapsulation: ViewEncapsulation.Emulated
     })```
 
-  17. ngZone
+17. ngZone
     - 不要這樣寫,否則每次偵測變更時都會被觸發
     ```sh
     <div class="card-title">Area {{showText()}}
@@ -182,13 +180,19 @@ export function MyNameValidatorWithParms(nameRe: RegExp): ValidatorFn
     }
     ```
     - 應該要加上
-  ```sh
-  constructor(private _ngZone:NgZone) { }
+    ```sh
+    constructor(private _ngZone:NgZone) { }
 
-  ngOnInit() {
-    this._ngZone.runOutsideAngular(()=>{
-      $(FlotCharts)
+    ngOnInit() {
+      this._ngZone.runOutsideAngular(()=>{
+        $(FlotCharts) }); 
+      }```
 
-    });
-
-  }```
+18. 變更偵測策略
+    - 每個元件都可以定義自己的變更偵測策略
+    -   ChangeDetectionStrategy.Default
+        -   從任意一個元件觸發了一個非同步事件 (ex. click)，Angular 會從根元件開始往下執行所有的變更偵測
+        - 變更偵測會在每一次非同步事件發生時執行
+    -   ChangeDetectionStrategy.OnPush
+        - 變更偵測會在當元件中有 @Input() 屬性資料變更時執行
+    - 每次變更偵測作業都會從根元件開始執行
