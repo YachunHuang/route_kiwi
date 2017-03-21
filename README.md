@@ -71,48 +71,48 @@ this.form = this.fb.group(
 
 8. 用 Reactive Forms 實作動態欄位表單與驗證  
    - 使用map動態產生物件  
-```sh
-    this.form = this.fb.group(
-    {
-        'title': ['p1value', [Validators.required, Validators.maxLength(10)]],
-        'subtitle': ['p2value', Validators.required],
-        'types':this.fb.array(
-        this.types.map((v,idx)=>{
-        return this.fb.control('default value '+v, Validators.required);
-          })
-        )
-      }
-    );
-```
+    ```sh
+        this.form = this.fb.group(
+        {
+            'title': ['p1value', [Validators.required, Validators.maxLength(10)]],
+            'subtitle': ['p2value', Validators.required],
+            'types':this.fb.array(
+            this.types.map((v,idx)=>{
+            return this.fb.control('default value '+v, Validators.required);
+              })
+            )
+          }
+        );
+    ```
 
 9. 透過強行別將class轉為formgroup  
 
 10. 練習 Reactive Forms 的自訂驗證器  
-```sh
-import { AbstractControl, ValidatorFn } from '@angular/forms';
-//不帶參數的驗證器
-export function MyNameValidator(control: AbstractControl)
-{
-  if(control.value.indexOf('Kiwi') === 0)
-  {
-    if(control.value.endsWith('0'))
+    ```sh
+    import { AbstractControl, ValidatorFn } from '@angular/forms';
+    //不帶參數的驗證器
+    export function MyNameValidator(control: AbstractControl)
     {
-      return {myname:true};
+      if(control.value.indexOf('Kiwi') === 0)
+      {
+        if(control.value.endsWith('0'))
+        {
+          return {myname:true};
+        }
+      }
+      return null;
     }
-  }
-  return null;
-}
 
-//帶參數驗證器
-export function MyNameValidatorWithParms(nameRe: RegExp): ValidatorFn
-{
-  return (control: AbstractControl): { [key: string]: any } =>
+    //帶參數驗證器
+    export function MyNameValidatorWithParms(nameRe: RegExp): ValidatorFn
     {
-      const name = control.value; const no = nameRe.test(name);
-      return no ? { 'mynamewithparms': true } : null;
-    };
-}    
-```
+      return (control: AbstractControl): { [key: string]: any } =>
+        {
+          const name = control.value; const no = nameRe.test(name);
+          return no ? { 'mynamewithparms': true } : null;
+        };
+    }    
+    ``` 
 
 11. 練習 ViewChild, ViewChildren, ContentChild, ContentChildren 的用法
 12. Directive
