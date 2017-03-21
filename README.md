@@ -151,7 +151,8 @@ this.form = this.fb.group(
     ngOnInit() {
       //this.el.nativeElement.innerHtml (避免這樣使用,因為什麼東西都可以塞進去)
       //透過實作renderer,透過這個去產生標準的html就是安全的
-    }```  
+    }
+    ```  
 15. 何時該用哪些寫法
     ```sh 
     [AoT](https://github.com/rangle/angular-2-aot-sandbox)
@@ -166,7 +167,8 @@ this.form = this.fb.group(
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.css'],
     encapsulation: ViewEncapsulation.Emulated
-    })```
+    })
+    ```
 
 17. ngZone
     - 不要這樣寫,否則每次偵測變更時都會被觸發
@@ -186,7 +188,8 @@ this.form = this.fb.group(
     ngOnInit() {
       this._ngZone.runOutsideAngular(()=>{
         $(FlotCharts) }); 
-      }```
+      }
+      ```
 
 18. 變更偵測策略
     - 每個元件都可以定義自己的變更偵測策略
