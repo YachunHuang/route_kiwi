@@ -14,9 +14,13 @@ export class Test1Directive {
    * (click)="changeColor($event)"
    */
   @HostListener('click', ['$event'])
-  changeColor($event) {
+  changeColor($event:MouseEvent) {
     this.textColor = 'darkgreen';
     console.log($event);
+
+    /**列出裡面的所有dom物件 */
+    console.dir($event);
+
   }
 
   constructor() { }
