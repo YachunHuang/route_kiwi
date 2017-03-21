@@ -138,3 +138,13 @@ export function MyNameValidatorWithParms(nameRe: RegExp): ValidatorFn
     console.log($event);
   }
 ```
+13. console小技巧
+  ```sh
+      /**列出裡面的所有dom物件 */
+      console.dir($event);
+      /**
+      *可以印出成table樣式
+      * var aaa=[{a:1},{b:2},{c:3}];
+      * console.table(aaa)
+      */
+  ```
